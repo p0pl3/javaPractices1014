@@ -2,9 +2,7 @@ package com.example.practice12.components;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.ApplicationArguments;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -15,9 +13,6 @@ import java.nio.file.Path;
 
 @Component
 public class HashCoder {
-
-    @Autowired
-    private ApplicationArguments applicationArguments;
 
     @Value("#{springApplicationArguments.nonOptionArgs[0]}")
     private String inputFilePath;
@@ -39,7 +34,6 @@ public class HashCoder {
             writer.flush();
             writer.close();
         }
-
     }
 
     @PreDestroy
@@ -48,6 +42,5 @@ public class HashCoder {
             File file = new File(inputFilePath);
             file.delete();
         }
-
     }
 }
